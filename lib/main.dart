@@ -16,3 +16,8 @@ class MainApp extends StatelessWidget {
     );
   }
 }
+
+/*Instalar node.js
+npm install -g firebase-tools
+firebase login
+*/
