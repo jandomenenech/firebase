@@ -1,7 +1,14 @@
 import 'package:firebase/Pagines/pagina_login.dart';
+import 'package:firebase/firebase_options.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+void main() async {
+
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MainApp());
 }
 
@@ -22,7 +29,7 @@ npm install -g firebase-tools
 firebase login
 */
 
-//dart pub global activate firebase-tools
-//firebase serve --project=proyecto
+//dart pub global activate flutterfire_cli
 //flutterfire configure  //fir-76d6f
 //flutter pub add firebase_auth
+//flutter pub add firebase_core

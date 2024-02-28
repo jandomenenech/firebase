@@ -14,7 +14,7 @@ class BotoAuth extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: ,
+      onTap: onTap,
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 200, vertical:20),
         margin: const EdgeInsets.all(25),
