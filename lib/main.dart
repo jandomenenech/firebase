@@ -21,3 +21,8 @@ class MainApp extends StatelessWidget {
 npm install -g firebase-tools
 firebase login
 */
+
+//dart pub global activate firebase-tools
+//firebase serve --project=proyecto
+//flutterfire configure  //fir-76d6f
+//flutter pub add firebase_auth
