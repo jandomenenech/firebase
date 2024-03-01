@@ -3,7 +3,12 @@ import 'package:firebase/componenets/textfield_auth.dart';
 import 'package:flutter/material.dart';
 
 class PaginaLogin extends StatefulWidget {
-  const PaginaLogin({super.key});
+
+  final void Function() alFerClick;
+  const PaginaLogin({
+    super.key,
+    required this.alFerClick,
+    });
 
   @override
   State<PaginaLogin> createState() => _PaginaLoginState();
@@ -16,6 +21,7 @@ class _PaginaLoginState extends State<PaginaLogin> {
   void FerLogin(){
     
   }
+  
 
   @override
   Widget build(BuildContext context) {
@@ -86,10 +92,11 @@ class _PaginaLoginState extends State<PaginaLogin> {
                     child: Row(
                       mainAxisAlignment:MainAxisAlignment.end,
                       children: [
-                        const Text("No ets membre?"),
+                        const Text("Estas registrat?"),
                         const SizedBox(width: 30,),
                         GestureDetector(
-                          child: const Text("Registra't",
+                          onTap: widget.alFerClick,
+                          child: const Text("Fes login",
                           style:TextStyle(fontWeight: FontWeight.bold,
                           color: Color.fromARGB(255, 0, 49, 88),
                           ),              

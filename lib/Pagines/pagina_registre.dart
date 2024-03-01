@@ -2,12 +2,25 @@ import 'package:firebase/componenets/boto_auth.dart';
 import 'package:firebase/componenets/textfield_auth.dart';
 import 'package:flutter/material.dart';
 
-class PaginaRegistre extends StatelessWidget {
-  PaginaRegistre({super.key});
+class PaginaRegistre extends StatefulWidget {
 
+  final void Function() alFerClick;
+  PaginaRegistre({
+    super.key,
+    required this.alFerClick
+  });
+
+  @override
+  State<PaginaRegistre> createState() => _PaginaRegistreState();
+}
+
+class _PaginaRegistreState extends State<PaginaRegistre> {
   final TextEditingController controllerEmail = TextEditingController();
+
   final TextEditingController controllerPass = TextEditingController();
+
   void FerRegistre() {}
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -83,6 +96,7 @@ class PaginaRegistre extends StatelessWidget {
                           width: 30,
                         ),
                         GestureDetector(
+                          onTap: widget.alFerClick,
                           child: const Text(
                             "Registra't",
                             style: TextStyle(
@@ -98,7 +112,7 @@ class PaginaRegistre extends StatelessWidget {
                     height: 10,
                   ),
                   BotoAuth(
-                    text: "Login",
+                    text: "Registra't",
                     onTap: FerRegistre,
                   ),
                 ],
