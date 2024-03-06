@@ -1,3 +1,5 @@
+import 'package:firebase/auth/portal_auth.dart';
+import 'package:firebase/auth/servei_auth.dart';
 import 'package:firebase/componenets/boto_auth.dart';
 import 'package:firebase/componenets/textfield_auth.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +21,29 @@ class _PaginaRegistreState extends State<PaginaRegistre> {
 
   final TextEditingController controllerPass = TextEditingController();
 
-  void FerRegistre() {}
+  final TextEditingController controllerConfirmarPass = TextEditingController();
+  void FerRegistre(BuildContext context) async {
+    final ServeiAuth serveiAuth = ServeiAuth();
+    try{
+      await serveiAuth.registerAmbEmailIPassword(
+        controllerEmail.text,
+        controllerPass.text,
+        controllerConfirmarPass.text,
+      );
+      widget.alFerClick();
+    }catch(e){
+      // ignore: use_build_context_synchronously
+      showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return const AlertDialog(
+              title: Text("Error en el registre"),
+            );
+          }
+      );
+              
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -86,19 +110,25 @@ class _PaginaRegistreState extends State<PaginaRegistre> {
                     obscureText: true,
                   ),
                   const SizedBox(height: 25),
+                  TextField_Auth(
+                    controller: controllerConfirmarPass,
+                    hint: "Confirmar Password",
+                    obscureText: true,
+                  ),
+                  const SizedBox(height: 25),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 30),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        const Text("No ets membre?"),
+                        const Text("Ets membre?"),
                         const SizedBox(
                           width: 30,
                         ),
                         GestureDetector(
                           onTap: widget.alFerClick,
                           child: const Text(
-                            "Registra't",
+                            "Fes login",
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               color: Color.fromARGB(255, 0, 49, 88),
@@ -113,7 +143,7 @@ class _PaginaRegistreState extends State<PaginaRegistre> {
                   ),
                   BotoAuth(
                     text: "Registra't",
-                    onTap: FerRegistre,
+                    onTap: () => FerRegistre,
                   ),
                 ],
               ),

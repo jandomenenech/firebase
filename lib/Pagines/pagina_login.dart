@@ -1,3 +1,4 @@
+import 'package:firebase/auth/servei_auth.dart';
 import 'package:firebase/componenets/boto_auth.dart';
 import 'package:firebase/componenets/textfield_auth.dart';
 import 'package:flutter/material.dart';
@@ -17,9 +18,34 @@ class PaginaLogin extends StatefulWidget {
 class _PaginaLoginState extends State<PaginaLogin> {
   final TextEditingController controllerEmail = TextEditingController();
   final TextEditingController controllerPass = TextEditingController();
-  final TextEditingController controllerConfirmarPass = TextEditingController();
-  void FerLogin(){
+
+  
+  void FerLogin(BuildContext context)async{
+
+    final ServeiAuth serveiAuth = ServeiAuth();
+    try{
+        await serveiAuth.loginAmbEmailIPassword(
+          controllerEmail.text,
+          controllerPass.text
+          );
+    }catch(e){
+      // ignore: use_build_context_synchronously
+      showDialog(context: context, 
+      builder: (context) => AlertDialog(
+        title: const Text("Error"),
+        content: Text(e.toString()),
+        actions: <Widget>[
+          TextButton(
+            child: Text("OK"),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+        ],
+      ));
+    }
     
+
   }
   
 
@@ -92,11 +118,11 @@ class _PaginaLoginState extends State<PaginaLogin> {
                     child: Row(
                       mainAxisAlignment:MainAxisAlignment.end,
                       children: [
-                        const Text("Estas registrat?"),
+                        const Text("No estas registrat?"),
                         const SizedBox(width: 30,),
                         GestureDetector(
                           onTap: widget.alFerClick,
-                          child: const Text("Fes login",
+                          child: const Text("Registra't",
                           style:TextStyle(fontWeight: FontWeight.bold,
                           color: Color.fromARGB(255, 0, 49, 88),
                           ),              
@@ -109,7 +135,7 @@ class _PaginaLoginState extends State<PaginaLogin> {
                   const SizedBox(height: 10,),
                   BotoAuth(
                     text: "Login",
-                    onTap: FerLogin,
+                    onTap: ()=> FerLogin(context),
                   ),
                 ],
               ),
