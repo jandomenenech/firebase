@@ -34,4 +34,7 @@ Future<UserCredential> registerAmbEmailIPassword (String email, password, confir
   }
 }
 
+Future<void> logout () async{
+  await _auth.signOut();
+}
 }
