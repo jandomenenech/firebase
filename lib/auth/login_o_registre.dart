@@ -2,28 +2,32 @@ import 'package:firebase/Pagines/pagina_login.dart';
 import 'package:firebase/Pagines/pagina_registre.dart';
 import 'package:flutter/material.dart';
 
-class LoginRegistre extends StatefulWidget {
-  const LoginRegistre({super.key});
+
+class LoginORegistre extends StatefulWidget {
+  const LoginORegistre({super.key});
 
   @override
-  State<LoginRegistre> createState() => _LoginRegistreState();
+  State<LoginORegistre> createState() => _LoginORegistreState();
 }
 
-class _LoginRegistreState extends State<LoginRegistre> {
-  bool mostrarPaginaLogin = true;
+class _LoginORegistreState extends State<LoginORegistre> {
 
-  void intercanviarPaginasLR(){
+  bool mostraPaginaLogin = true;
+
+  void intercanviarPaginesLoginRegistre() {
     setState(() {
-      mostrarPaginaLogin =!mostrarPaginaLogin;
+      mostraPaginaLogin = !mostraPaginaLogin;
     });
   }
+
   @override
   Widget build(BuildContext context) {
-    if(mostrarPaginaLogin){
-      return PaginaLogin(alFerClick: intercanviarPaginasLR,);
-    }else{
-        return  PaginaRegistre(alFerClick: intercanviarPaginasLR,);
+
+    if (mostraPaginaLogin) {
+      return PaginaLogin(alFerClic: intercanviarPaginesLoginRegistre,);
+    } else {
+      return PaginaRegistre(alFerClic: intercanviarPaginesLoginRegistre,);
     }
-   
+    
   }
 }

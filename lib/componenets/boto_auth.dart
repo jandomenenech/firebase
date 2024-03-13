@@ -5,28 +5,34 @@ class BotoAuth extends StatelessWidget {
   final String text;
   final Function() onTap;
 
-   BotoAuth({
+  BotoAuth({
     super.key,
     required this.text,
-    required  this.onTap,
-   });
+    required this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 200, vertical:20),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          color: Color.fromARGB(255, 244, 111, 54),
+        ),
+        padding: const EdgeInsets.symmetric(
+          horizontal: 25, 
+          vertical: 25,
+        ),
         margin: const EdgeInsets.all(25),
-        child: Text(text,
-        style: TextStyle (
-          color: Colors.white,
-          fontWeight: FontWeight.bold,
-          fontSize: 16,
-          letterSpacing: 5,
-        ),),
-        decoration: BoxDecoration(borderRadius: BorderRadius.circular(8),
-        color: Color.fromARGB(255, 244, 111, 54),
+        child: Text(
+          text,
+          style: TextStyle(
+            color: Colors.orange[100],
+            fontWeight: FontWeight.bold,
+            fontSize: 16,
+            letterSpacing: 4,
+          ),
         ),
       ),
     );

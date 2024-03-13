@@ -6,10 +6,11 @@ import 'package:flutter/material.dart';
 
 class PaginaRegistre extends StatefulWidget {
 
-  final void Function() alFerClick;
-  PaginaRegistre({
-    super.key,
-    required this.alFerClick
+  final void Function() alFerClic;
+
+  const PaginaRegistre({
+    super.key, 
+    required this.alFerClic,
   });
 
   @override
@@ -17,31 +18,31 @@ class PaginaRegistre extends StatefulWidget {
 }
 
 class _PaginaRegistreState extends State<PaginaRegistre> {
+
   final TextEditingController controllerEmail = TextEditingController();
+  final TextEditingController controllerPassword = TextEditingController();
+  final TextEditingController controllerConfirmarPassword = TextEditingController();
 
-  final TextEditingController controllerPass = TextEditingController();
+  void ferRegistre(BuildContext context) async {
 
-  final TextEditingController controllerConfirmarPass = TextEditingController();
-  void FerRegistre(BuildContext context) async {
-    final ServeiAuth serveiAuth = ServeiAuth();
-    try{
-      await serveiAuth.registerAmbEmailIPassword(
-        controllerEmail.text,
-        controllerPass.text,
-        controllerConfirmarPass.text,
+    final serveiAuth = ServeiAuth();
+
+    try {
+
+      serveiAuth.registreAmbEmailIPassword(
+        controllerEmail.text, 
+        controllerPassword.text,
       );
-      widget.alFerClick();
-    }catch(e){
-      // ignore: use_build_context_synchronously
+
+    } catch (e) {
+
       showDialog(
-          context: context,
-          builder: (BuildContext context) {
-            return const AlertDialog(
-              title: Text("Error en el registre"),
-            );
-          }
+        context: context, 
+        builder: (context) => AlertDialog(
+          title: const Text("Error"),
+          content: Text(e.toString()),
+        ),
       );
-              
     }
   }
 
@@ -56,94 +57,106 @@ class _PaginaRegistreState extends State<PaginaRegistre> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Icon(Icons.fireplace,
-                      size: 120, color: Color.fromARGB(255, 255, 240, 218)),
-                  const SizedBox(height: 25),
-                  const Text(
-                    "Benvingut/a de nou",
-                    style: TextStyle(
-                        color: Color.fromARGB(255, 255, 240, 218),
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold),
+          
+                  // Logo.
+                  const Icon(
+                    Icons.fireplace,
+                    size: 120,
+                    color: Color.fromARGB(255, 255, 240, 218),
                   ),
-                  const SizedBox(height: 25),
-                  const Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 25,
+            
+                  const SizedBox(height: 25,),
+              
+                  // Frase.
+                  const Text(
+                    "Crea un compte nou",
+                    style: TextStyle(
+                      color: Color.fromARGB(255, 255, 240, 218),
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
                     ),
+                  ),
+            
+                  const SizedBox(height: 25,),
+            
+                  // Text divisori.
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 25,),
                     child: Row(
                       children: [
                         Expanded(
                           child: Divider(
                             thickness: 1,
                             color: Color.fromARGB(255, 255, 240, 218),
-                            indent: 50,
-                            endIndent: 50,
                           ),
                         ),
-                        Text(
-                          "Fes login",
-                          style: TextStyle(
-                              color: Color.fromARGB(255, 255, 240, 218)),
+                    
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 4,),
+                          child: Text(
+                            "Registra't",
+                            style: TextStyle(color: Color.fromARGB(255, 255, 240, 218),),
+                          ),
                         ),
+                    
                         Expanded(
                           child: Divider(
                             thickness: 1,
                             color: Color.fromARGB(255, 255, 240, 218),
-                            indent: 50,
-                            endIndent: 50,
                           ),
                         ),
                       ],
                     ),
                   ),
-                  const SizedBox(height: 25),
-                  TextField_Auth(
-                    controller: controllerEmail,
-                    hint: "Email",
+            
+                  const SizedBox(height: 10,),
+              
+                  // TextField Email.
+                  TextFieldAuth(
+                    controller: controllerEmail, 
+                    hintText: "Email", 
                     obscureText: false,
                   ),
-                  const SizedBox(height: 25),
-                  TextField_Auth(
-                    controller: controllerPass,
-                    hint: "Password",
+            
+                  const SizedBox(height: 10,),
+              
+                  // TextField Password.
+                  TextFieldAuth(
+                    controller: controllerPassword, 
+                    hintText: "Password", 
                     obscureText: true,
                   ),
-                  const SizedBox(height: 25),
-                  TextField_Auth(
-                    controller: controllerConfirmarPass,
-                    hint: "Confirmar Password",
-                    obscureText: true,
-                  ),
-                  const SizedBox(height: 25),
+            
+                  const SizedBox(height: 10,),
+              
+                  // No estàs registrat/da?
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 30),
+                    padding: const EdgeInsets.symmetric(horizontal: 25),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        const Text("Ets membre?"),
-                        const SizedBox(
-                          width: 30,
-                        ),
+                        const Text("Ja ets membre?"),
+                        const SizedBox(width: 5,),
                         GestureDetector(
-                          onTap: widget.alFerClick,
+                          onTap: widget.alFerClic,
                           child: const Text(
                             "Fes login",
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              color: Color.fromARGB(255, 0, 49, 88),
+                              color: Color.fromARGB(255, 40, 71, 97),
                             ),
                           ),
                         ),
                       ],
                     ),
                   ),
-                  const SizedBox(
-                    height: 10,
-                  ),
+            
+                  const SizedBox(height: 10,),
+              
+                  // Botó Registra't.
                   BotoAuth(
                     text: "Registra't",
-                    onTap: () => FerRegistre,
+                    onTap: () => ferRegistre(context),
                   ),
                 ],
               ),

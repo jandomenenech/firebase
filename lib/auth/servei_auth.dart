@@ -1,40 +1,51 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+     
+class ServeiAuth {
 
-class ServeiAuth{
   final FirebaseAuth _auth = FirebaseAuth.instance;
-  
-    Future<UserCredential> loginAmbEmailIPassword (String email, password) async{
-      try{
-    UserCredential userCredential = await _auth.signInWithEmailAndPassword(
-      email: email,
-      password: password
-      );
-    return userCredential;
-    
-    }on FirebaseAuthException catch (e){
-      throw  Exception (e.code);
-  }
-  
-}
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-Future<UserCredential> registerAmbEmailIPassword (String email, password, confirmarPass) async{
-  try{
-    if(password ==  confirmarPass){
-      UserCredential userCredential = await _auth.createUserWithEmailAndPassword(
-      email: email,
-      password: password
-      
+  // Fer login
+  Future<UserCredential> loginAmbEmailIPassword(String email, password) async {
+
+    try {
+      UserCredential credencialUsuari = await _auth.signInWithEmailAndPassword(
+        email: email, 
+        password: password,
       );
-      return userCredential;
-    }else{
-      throw Exception("Las contraseñas no coinciden");
+
+      return credencialUsuari;
+
+    } on FirebaseAuthException catch (e) {
+      throw Exception(e.code);
     }
-  }on FirebaseAuthException catch (e){
-    throw  Exception (e.code);
+    
   }
-}
 
-Future<void> logout () async{
-  await _auth.signOut();
-}
+  // Fer registre
+  Future<UserCredential> registreAmbEmailIPassword(String email, password) async {
+
+    try {
+      UserCredential credencialUsuari = await _auth.createUserWithEmailAndPassword(
+        email: email, 
+        password: password,
+      );
+
+       _firestore.collection("Usuaris").doc(credencialUsuari.user!.uid).set({
+        "uid" : credencialUsuari.user!.uid,
+        "Email": email,
+      });
+      return credencialUsuari;
+
+    } on FirebaseAuthException catch (e) {
+      throw Exception(e.code);
+    }
+    
+  }
+
+  // Fer logout
+  Future<void> tancarSessio() async {
+    return await _auth.signOut();
+  }
 }

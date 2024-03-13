@@ -34,4 +34,4 @@ firebase login
 //dart pub global activate flutterfire_cli
 //flutterfire configure  //fir-76d6f
 //flutter pub add firebase_auth
-//flutter pub add firebase_core
+//flut

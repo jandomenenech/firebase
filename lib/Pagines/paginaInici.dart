@@ -2,22 +2,24 @@ import 'package:firebase/auth/servei_auth.dart';
 import 'package:flutter/material.dart';
 
 class PaginaInici extends StatelessWidget {
-  
-  PaginaInici({
-    super.key,
-  });
+  const PaginaInici({super.key});
 
-  void logout(){
-    ServeiAuth serveiAuth = ServeiAuth();
-    serveiAuth.logout();
+  void logout() {
+    final serveiAuth = ServeiAuth();
+
+    serveiAuth.tancarSessio();
   }
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Pagina Inici"),
+        title: Text("Pàgina inici"),
         actions: [
-          IconButton(onPressed: logout, icon: Icon(Icons.logout))
+          IconButton(
+            onPressed: logout, 
+            icon: Icon(Icons.logout),
+          ),
         ],
       ),
     );
