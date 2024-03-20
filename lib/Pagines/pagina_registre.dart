@@ -1,4 +1,3 @@
-import 'package:firebase/auth/portal_auth.dart';
 import 'package:firebase/auth/servei_auth.dart';
 import 'package:firebase/componenets/boto_auth.dart';
 import 'package:firebase/componenets/textfield_auth.dart';
