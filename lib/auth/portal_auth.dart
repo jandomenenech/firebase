@@ -1,4 +1,5 @@
 import 'package:firebase/Pagines/paginaInici.dart';
+import 'package:firebase/Pagines/pagina_login.dart';
 import 'package:firebase/auth/login_o_registre.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';

@@ -23,15 +23,9 @@ class DefaultFirebaseOptions {
       case TargetPlatform.android:
         return android;
       case TargetPlatform.iOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for ios - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return ios;
       case TargetPlatform.macOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for macos - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return macos;
       case TargetPlatform.windows:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for windows - '
@@ -50,19 +44,38 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyDr5yjjCKkY-TV766rMhQy4j-iRDsTMkoI',
-    appId: '1:945443092268:web:8365aca946886495085e89',
-    messagingSenderId: '945443092268',
-    projectId: 'flutterfirebase-f2c54',
-    authDomain: 'flutterfirebase-f2c54.firebaseapp.com',
-    storageBucket: 'flutterfirebase-f2c54.appspot.com',
+    apiKey: 'AIzaSyDYo3RawKxsQre7DJbOcLCXxrrPaKtXPzc',
+    appId: '1:57293682347:web:02b90e0a265fda7c6ea9ee',
+    messagingSenderId: '57293682347',
+    projectId: 'fir-76d6f',
+    authDomain: 'fir-76d6f.firebaseapp.com',
+    storageBucket: 'fir-76d6f.appspot.com',
+    measurementId: 'G-VVGLHW0CX2',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyCKKCLhtiMVfN-2NSl2Kc7lOxLht8OWtPA',
-    appId: '1:945443092268:android:48fd42e57e7b9044085e89',
-    messagingSenderId: '945443092268',
-    projectId: 'flutterfirebase-f2c54',
-    storageBucket: 'flutterfirebase-f2c54.appspot.com',
+    apiKey: 'AIzaSyDHPgUtihwNveyagyxmmUlv13XHFDrHZoQ',
+    appId: '1:57293682347:android:730459a42f58bd8b6ea9ee',
+    messagingSenderId: '57293682347',
+    projectId: 'fir-76d6f',
+    storageBucket: 'fir-76d6f.appspot.com',
+  );
+
+  static const FirebaseOptions ios = FirebaseOptions(
+    apiKey: 'AIzaSyAIMtfscy5qaW4kRvTIuD5hmHVdpo3k62o',
+    appId: '1:57293682347:ios:2be8938b47cc88206ea9ee',
+    messagingSenderId: '57293682347',
+    projectId: 'fir-76d6f',
+    storageBucket: 'fir-76d6f.appspot.com',
+    iosBundleId: 'com.example.firebase',
+  );
+
+  static const FirebaseOptions macos = FirebaseOptions(
+    apiKey: 'AIzaSyAIMtfscy5qaW4kRvTIuD5hmHVdpo3k62o',
+    appId: '1:57293682347:ios:1c7b60df2e61124c6ea9ee',
+    messagingSenderId: '57293682347',
+    projectId: 'fir-76d6f',
+    storageBucket: 'fir-76d6f.appspot.com',
+    iosBundleId: 'com.example.firebase.RunnerTests',
   );
 }

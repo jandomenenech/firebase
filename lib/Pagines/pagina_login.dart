@@ -114,7 +114,7 @@ class _PaginaLoginState extends State<PaginaLogin> {
                   // TextField Email.
                   TextFieldAuth(
                     controller: controllerEmail, 
-                    hintText: "Email", 
+                    hint: "Email", 
                     obscureText: false,
                   ),
             
@@ -123,7 +123,7 @@ class _PaginaLoginState extends State<PaginaLogin> {
                   // TextField Password.
                   TextFieldAuth(
                     controller: controllerPassword, 
-                    hintText: "Password", 
+                    hint: "Password", 
                     obscureText: true,
                   ),
             

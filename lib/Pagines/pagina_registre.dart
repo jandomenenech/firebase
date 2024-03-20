@@ -1,3 +1,4 @@
+import 'package:firebase/auth/portal_auth.dart';
 import 'package:firebase/auth/servei_auth.dart';
 import 'package:firebase/componenets/boto_auth.dart';
 import 'package:firebase/componenets/textfield_auth.dart';
@@ -113,7 +114,7 @@ class _PaginaRegistreState extends State<PaginaRegistre> {
                   // TextField Email.
                   TextFieldAuth(
                     controller: controllerEmail, 
-                    hintText: "Email", 
+                    hint: "Email", 
                     obscureText: false,
                   ),
             
@@ -122,7 +123,7 @@ class _PaginaRegistreState extends State<PaginaRegistre> {
                   // TextField Password.
                   TextFieldAuth(
                     controller: controllerPassword, 
-                    hintText: "Password", 
+                    hint: "Password", 
                     obscureText: true,
                   ),
             

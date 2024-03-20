@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 
 class PaginaChat extends StatefulWidget {
-  const PaginaChat({super.key});
+  final String emailAmbQuiParlem;
+  const PaginaChat({
+    super.key,
+    required this.emailAmbQuiParlem,
+    });
 
   @override
   State<PaginaChat> createState() => _PaginaChatState();
@@ -12,7 +16,7 @@ class _PaginaChatState extends State<PaginaChat> {
   Widget build(BuildContext context) {
     return  Scaffold(
       appBar: AppBar(
-        title: Text("Amb qui parlem"),
+        title: Text(widget.emailAmbQuiParlem),
       ),
       body: Column(
         children: [
