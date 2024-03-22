@@ -48,4 +48,10 @@ class ServeiChat {
       .collection("Missatges")
       .add(nouMissatge.retornaMapaMissatge());
   }
+  Stream<QuerySnapshot> getMissatges(String idReceptor, idUsuariActual){
+    List<String> idsUsuaris = [idUsuariActual,idReceptor];
+    idsUsuaris.sort();
+    String idSalaChat = idsUsuaris.join("_");
+    return _firestore.collection("SalasChat").doc(idSalaChat).collection("Missatges").orderBy("timestamp", descending: false).snapshots();
+  }
 }
