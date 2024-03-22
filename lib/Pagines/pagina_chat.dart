@@ -1,5 +1,11 @@
+import 'dart:html';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase/auth/servei_auth.dart';
 import 'package:firebase/chat/chat_servei.dart';
+import 'package:firebase/componenets/bombolla_missatges.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class PaginaChat extends StatefulWidget {
 
@@ -22,13 +28,15 @@ class _PaginaChatState extends State<PaginaChat> {
 
   final ServeiChat _serveiChat = ServeiChat();
 
+  final ServeiAuth _serveiAuth = ServeiAuth();
+
   void enviarMissatge() {
 
     if (controllerMissatge.text.isNotEmpty) {
 
       // Enviar el missatge.
       _serveiChat.enviarMissatge(
-        , 
+        widget.idReceptor, 
         controllerMissatge,
         );
 
@@ -58,9 +66,39 @@ class _PaginaChatState extends State<PaginaChat> {
   }
 
   Widget _construirLlistaMissatges() {
+    
+    return StreamBuilder(stream: _serveiChat.getMissatges(widget.idReceptor, _serveiAuth.getUsuariActual()!.uid),
+     builder: (context, snapshot){
+      if(snapshot.hasError){
+        return const Text("Error carregant missatges.");
+      }
+      if(snapshot.connectionState==ConnectionState.waiting){
+        return const Center(child: CircularProgressIndicator());
+      }
+      return ListView(
+        children: snapshot.data!.docs.map((document) => _construirItemMissatge(document)).toList(),
+      );
 
-    return Container();
+     },
+     );
   }
+  Widget _construirItemMissatge(DocumentSnapshot document){
+    Map<String,dynamic> data = document.data() as Map<String,dynamic>;
+    bool esUsuariActual  = data["idAutor"] == _serveiAuth.getUsuariActual()!.uid;
+    var aliniament = esUsuariActual ? Alignment.centerRight : Alignment.centerLeft;
+    var colorBombolla = esUsuariActual ? Colors.green[200] : Colors.amber[225];
+    return Container(
+      alignment: aliniament,
+      child: BombollaMissatge(
+        missatge: data["missatge"],
+        colorBombolla: colorBombolla??Colors.black
+       
+      ),
+    );
+
+
+  }
+
 
   Widget _construirZonaInputUsuari() {
     return Padding(
