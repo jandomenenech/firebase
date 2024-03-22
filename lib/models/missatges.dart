@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class Missatge{
+class Missatge {
+
   final String idAutor;
   final String emailAutor;
   final String idReceptor;
@@ -13,6 +14,15 @@ class Missatge{
     required this.idReceptor,
     required this.missatge,
     required this.timestamp,
-    
   });
+
+  Map<String, dynamic> retornaMapaMissatge() {
+    return {
+      "idAutor": idAutor,
+      "emailAutor": emailAutor,
+      "idReceptor": idReceptor,
+      "missatge": missatge,
+      "timestamp": timestamp,
+    };
+  }
 }

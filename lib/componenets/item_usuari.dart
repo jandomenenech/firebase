@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 
 class ItemUsuari extends StatelessWidget {
+
   final String emailUsuari;
   final void Function()? onTap;
 
-   const ItemUsuari({
+  const ItemUsuari({
     super.key,
     required this.emailUsuari,
     required this.onTap,
-    });
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -16,8 +17,8 @@ class ItemUsuari extends StatelessWidget {
       onTap: onTap,
       child: Container(
         decoration: BoxDecoration(
-          color: Colors.orange,
-          borderRadius: BorderRadius.circular(10),
+          color: Colors.amber,
+          borderRadius: BorderRadius.circular(12),
         ),
         margin: const EdgeInsets.symmetric(
           vertical: 5,
@@ -26,11 +27,9 @@ class ItemUsuari extends StatelessWidget {
         padding: const EdgeInsets.all(20),
         child: Row(
           children: [
-           Icon(Icons.person),
-           const SizedBox(
-            width: 10,
-           ),
-           Text(emailUsuari),
+            const Icon(Icons.person),
+            const SizedBox(width: 10,),
+            Text(emailUsuari),
           ],
         ),
       ),
